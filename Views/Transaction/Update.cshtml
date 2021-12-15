@@ -1,0 +1,63 @@
+﻿@model DigeraitMIS.Models.ViewModels.TransactionVM
+
+<form method="post" asp-controller="Transaction" asp-action="Update">
+    <input type="hidden" asp-for="Transaction.TransactionID" />
+    <div class="border p-3">
+
+        <div class="form-group row">
+            <h2 class="text-primary pl-3">Update Transaction</h2>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.Name" class="control-label"></label>
+            <input asp-for="Transaction.Name" class="form-control" />
+            <span asp-validation-for="Transaction.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.Date" class="control-label"></label>
+            <input asp-for="Transaction.Date" class="form-control" />
+            <span asp-validation-for="Transaction.Date" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.ReferenceNo" class="control-label"></label>
+            <input asp-for="Transaction.ReferenceNo" class="form-control" />
+            <span asp-validation-for="Transaction.ReferenceNo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.TransactionType" class="control-label"></label>
+            <select asp-for="Transaction.TransactionType" class="form-control">
+                <option>--Select Type--</option>
+                <option>Expense</option>
+                <option>Income</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.Amount" class="control-label"></label>
+            <input asp-for="Transaction.Amount" class="form-control" />
+            <span asp-validation-for="Transaction.Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.Description" class="control-label"></label>
+            <input asp-for="Transaction.Description" class="form-control" />
+            <span asp-validation-for="Transaction.Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Transaction.CentreNo" control-label"></label>
+            <select asp-for="Transaction.CentreNo" class="form-control" asp-items="@Model.TypeDropDown">
+                <option selected>--Select Centre--</option>
+            </select>
+            <span asp-validation-for="Transaction.CentreNo" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

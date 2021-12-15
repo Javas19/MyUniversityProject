@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+
+<h1>Your profile</h1>
+<p><img alt="userIcon" src="~/User.png" width="70" height="70" /></p>
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<label>Name: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["FirstName"];
+}
+<br />
+<label>Surname: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["Surname"];
+}
+
+<br />
+<label>Email: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["EmailAddress"];
+}
+
+<br />
+<a asp-controller="Profile" asp-action="Edit" asp-area="Pupil" asp-route-id="@id" class="btn btn-primary">Edit Profile</a>
+

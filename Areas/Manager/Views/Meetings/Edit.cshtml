@@ -1,0 +1,45 @@
+﻿@model EditMeetingVM
+@using Microsoft.AspNetCore.Http
+@{
+
+}
+@{
+    ViewBag.Title = "Edit Meeting";
+}
+
+@if (TempData.Keys.Contains("data"))
+{
+    <h4 class="bg-info text-center text-white p-2">
+        Editing:
+        @TempData["data"]
+    </h4>
+}
+
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Meetings" asp-area="Manager" method="post">
+
+            <div class="form-group">
+                <div>Title:  @Model.Title</div>
+            </div>
+            <div class="form-group">
+                <div>Date:   @Model.Date</div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" placeholder="@ViewBag.Description" rows="7"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a asp-action="Index" asp-controller="Meetings" asp-area="Manager" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

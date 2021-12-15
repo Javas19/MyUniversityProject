@@ -1,0 +1,83 @@
+﻿@model IEnumerable<DigeraitMIS.Models.User>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Teacher List</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="ManageStaff" asp-action="Create" class="btn btn-primary">Add New Teacher</a>
+        </div>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EmailAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserType)
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.UserStatus)
+                    </th>
+                    <th>
+                        Changes
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EmailAddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserType)
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.Password)
+                            </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserStatus)
+                        </td>
+                        @*<td>
+                                <a asp-action="Edit" asp-route-id="@item.UserID">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.UserID">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.UserID">Delete</a>
+                            </td>*@
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-action="Update" asp-route-id="@item.UserID" class="btn btn-primary mx-1">Update</a>
+                                <a asp-action="Delete" asp-route-id="@item.UserID" class="btn btn-danger mx-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No items created yet</p>
+    }
+</div>

@@ -1,0 +1,37 @@
+﻿@model DigeraitMIS.Models.ViewModels.ManageStaffVM
+
+<form method="post" asp-controller="ManageStaff" asp-action="Update">
+    <input type="hidden" asp-for="User.UserID" />
+    <div class="border p-3">
+
+        <div class="form-group row">
+            <h2 class="text-primary pl-3">Update Teacher</h2>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.FirstName" class="control-label"></label>
+            <input asp-for="User.FirstName" class="form-control" />
+            <span asp-validation-for="User.FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.Surname" class="control-label"></label>
+            <input asp-for="User.Surname" class="form-control" />
+            <span asp-validation-for="User.Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="User.UserStatus" class="control-label"></label>
+            <input asp-for="User.UserStatus" class="form-control" />
+            <span asp-validation-for="User.UserStatus" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,55 @@
+﻿@model DigeraitMIS.Models.ViewModels.CentreProfileVM
+
+<form method="post" asp-controller="CentreProfile" asp-action="Update">
+    <input type="hidden" asp-for="CentreProfile.CentreNo" />
+    <div class="border p-3">
+
+        <div class="form-group row">
+            <h2 class="text-primary pl-3">Update Centre</h2>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.Name" class="control-label"></label>
+            <input asp-for="CentreProfile.Name" class="form-control" />
+            <span asp-validation-for="CentreProfile.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.RegionID" control-label"></label>
+            <select asp-for="CentreProfile.RegionID" class="form-control" asp-items="@Model.TypeDropDown">
+                <option selected>--Select Centre--</option>
+            </select>
+            <span asp-validation-for="CentreProfile.RegionID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.ManagerID" class="control-label"></label>
+            <input asp-for="CentreProfile.ManagerID" class="form-control" />
+            <span asp-validation-for="CentreProfile.ManagerID" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.AddressLine1" class="control-label"></label>
+            <input asp-for="CentreProfile.AddressLine1" class="form-control" />
+            <span asp-validation-for="CentreProfile.AddressLine1" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.AddressLine2" class="control-label"></label>
+            <input asp-for="CentreProfile.AddressLine2" class="form-control" />
+            <span asp-validation-for="CentreProfile.AddressLine2" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CentreProfile.RegistrationNo" class="control-label"></label>
+            <input asp-for="CentreProfile.RegistrationNo" class="form-control" />
+            <span asp-validation-for="CentreProfile.RegistrationNo" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+            <div>
+                <a asp-action="Index" class="btn btn-danger">Back to List</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

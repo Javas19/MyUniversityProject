@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+
+<h1>ECDC Profile</h1>
+<p><img alt="userIcon" src="~/User.png" width="70" height="70" /></p>
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<label>Name: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["Name"];
+}
+<br />
+<label>Region Name: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["RegionName"];
+}
+
+<br />
+<label>Manager: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["FirstName"];
+}
+
+<br />
+
+<label>Address Line 1: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["AddressLine1"];
+}
+
+<br />
+<label>Address Line 2: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["AddressLine2"];
+}
+
+<br />
+<label>Registration Number: &nbsp;</label>
+
+@foreach (var dt in ViewData.Model)
+{
+    @dt["RegistrationNo"];
+}
+
+<br />
+
+<a asp-controller="CentreProfile" asp-action="Edit" asp-area="Manager" asp-route-id="@id" class="btn btn-primary">Edit Profile</a>
+

@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title ="Upcoming Meetings:";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="align-content-center">
+
+    @if (ViewData.Model != null)
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Meeting Title</th>
+                    <th>Meeting Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dt in ViewData.Model)
+                {
+                    <tr>
+                        <th colspan="2">
+                            @dt["Title"]
+                    </th>
+
+                </tr>
+                <tr>
+                    <td>
+                        Date: @dt["Date"]
+                        @*<br />
+                            Time: @dt["Time"]*@
+                    </td>
+                    <td>@dt["Description"]</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+    else if (ViewData.Model = null)
+    {
+        <h4 class="bg-warning text-center text-white p-2">No upcoming meetings.</h4>
+    }
+
+
+</div>

@@ -1,0 +1,42 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@if (TempData.Keys.Contains("TeacherSuccess"))
+{
+    <h4 class="bg-info text-center text-white p-2">
+        @TempData["TeacherSuccess"]
+    </h4>
+}
+<h1>Your profile</h1>
+<p><img alt="userIcon" src="~/User.png" width="70" height="70" /></p>
+@if (TempData.Keys.Contains(""))
+{
+    <h4 class="bg-info text-center text-white p-2">
+        Editing:
+        @TempData["data"]
+    </h4>
+}
+@foreach (var dt in ViewData.Model)
+{
+    <label>Name: @dt["FirstName"]</label>
+    <br />
+    <label>Surname: @dt["Surname"]</label>
+    <br />
+    <label>Email Address: @dt["EmailAddress"]</label>
+}
+<br />
+<a asp-action="Edit" asp-controller="TeacherProfile" class="btn btn-primary">Edit profile</a>
+
+<a asp-action="Pupils" asp-controller="Pupil" class="btn btn-primary">Manage Pupils</a>
+
+<a asp-action="AddPupilProgress" asp-controller="ManagePupilProgress" class="btn btn-primary">Manage Pupil Progress</a>
+
+<a asp-action="Add" asp-controller="TermReport" class="btn btn-primary">Add term report</a>
+
+    <a asp-action="List" asp-controller="Suggestion" class="btn btn-primary">View Suggestions</a>
+
+
+

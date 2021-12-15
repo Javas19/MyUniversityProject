@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model EditProfileViewModel
+@using Microsoft.AspNetCore.Http
+@{
+
+}
+
+@{
+    ViewBag.Title = "Edit Profile";
+}
+
+@if (TempData.Keys.Contains("data"))
+{
+    <h4 class="bg-info text-center text-white p-2">
+        Editing:
+        @TempData["data"]
+    </h4>
+}
+
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Profile" asp-area="Manager" method="post">
+            <div class="col-6 form-group">
+                <div>Name: @Context.Session.GetString("managerName")</div>
+
+            </div>
+            <div class="col-6 form-group">
+                <div>Surname: @Context.Session.GetString("managerSurname")</div>
+
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="input-group">
+
+                <div class="col-6 form-group">
+                    <label asp-for="Email">Email Address</label>
+                    <input asp-for="Email" class="form-control" type="email" v />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="ConfirmEmail">Confirm Email</label>
+                    <input asp-for="ConfirmEmail" class="form-control" type="email" />
+                </div>
+            </div>
+            <div class="input-group">
+                <div class="col-6 form-group">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" asp-for="Password" class="form-control" />
+                </div>
+                <div class="col-6 form-group">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input type="password" asp-for="ConfirmPassword" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
+                    <a asp-action="Index" asp-controller="Home" asp-area="Manager" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

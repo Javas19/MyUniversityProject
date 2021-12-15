@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+@{
+    ViewBag.Title = "Centre Programmes";
+}
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">@ViewBag.Title</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="CentreProgramme" asp-action="Add" asp-area="Manager" class="btn btn-primary">Add new Centre Programme</a>
+        </div>
+    </div>
+    <br /><table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>
+                    <label>Programme ID&nbsp;</label>
+                </th>
+                <th>
+                    <label>Name&nbsp;</label>
+                </th>
+                <th>
+                    <label>Date&nbsp;</label>
+                </th>
+                <th>
+                    <label>Teacher ID&nbsp;</label>
+                </th>
+                <th>
+                    <label>Teacher Name&nbsp;</label>
+                </th>
+                @*<th>
+                        <label>Description &nbsp;</label>
+                    </th>*@
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var dt in ViewData.Model)
+            {
+            <tr>
+                <td>
+                    @dt["CentreProgrammeID"]
+                </td>
+                <td>
+                    @dt["Name"]
+                </td>
+                <td>
+                    @dt["Date"]
+                </td>
+                <td>
+                    @dt["TeacherID"]
+                </td>
+                <td>
+                    @dt["FirstName"]
+                </td>
+                <td>
+                    <div class="w-100 btn-group" role="group">
+                        <a asp-controller="CentreProgramme" asp-action="Detail" asp-area="Manager" asp-route-id="@dt["CentreProgrammeID"]" class="btn btn-primary mx-1">View</a>
+                        <a asp-controller="CentreProgramme" asp-action="Edit" asp-area="Manager" asp-route-id="@dt["CentreProgrammeID"]" class="btn btn-primary mx-1">Edit</a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

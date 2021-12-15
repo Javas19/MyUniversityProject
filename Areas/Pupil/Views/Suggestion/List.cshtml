@@ -1,0 +1,69 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http 
+@{
+    int id = (int)Context.Session.GetInt32("id");
+}
+
+
+
+<div class="align-content-center">
+    
+    <h2>Suggestions</h2>
+    @if (TempData.Keys.Contains("suggestion"))
+    {
+        <h4 class="bg-success text-center text-white p-2">
+            
+            @TempData["suggestion"]
+        </h4>
+    }
+
+    @if (TempData.Keys.Contains("suggestionDelete"))
+    {
+        <h4 class="bg-success text-center text-white p-2">
+
+            @TempData["suggestionDelete"]
+        </h4>
+    }
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th class="border-right-0">All Suggested things</th>
+                <th class="border-left-0"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dt in ViewData.Model)
+            {
+                <tr>
+                    <td class="border-right-0">
+                        @dt["Description"]
+                        <br /><br />
+                        From: @dt["FirstName"]
+                        @dt["Surname"]
+                        <br />
+                        Date:  @dt["Date"]
+                        <br />
+
+
+                    </td>
+                    @if (id == dt["PupilID"])
+                    {
+                        <td class="border-left-0">
+                            <a asp-action="Edit" asp-controller="Suggestion" asp-area="Pupil" asp-route-id="@dt["SuggestionID"]" class="btn btn-primary">Edit</a>
+                            <br /><br />
+                            <form asp-action="Delete" asp-controller="Suggestion" asp-area="Pupil" asp-route-id="@dt["SuggestionID"]" method="post">
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                            </form>
+                        </td>
+
+
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <a asp-action="Add" asp-controller="Suggestion" asp-area="Pupil" class="btn btn-primary">Add new suggestion</a>
+</div>

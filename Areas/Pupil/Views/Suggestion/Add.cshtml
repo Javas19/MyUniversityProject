@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model AddSuggestionViewModel
+@{
+    ViewBag.Title = "Add Suggestion";
+}
+
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <form asp-action="Add" asp-controller="Suggestion" asp-area="Pupil" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+                
+                <label asp-for="Suggestion">Add your suggestion</label>
+                <textarea asp-for="Suggestion" class="form-control" rows="7"></textarea>
+            
+        </div>
+        <button type="submit" class="btn btn-primary">Add suggestion</button>
+        <a asp-action="List" asp-controller="Suggestion" asp-area="Pupil" class="btn btn-primary">Cancel</a>
+    </form>
+</div>
+

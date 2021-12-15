@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@model DigeraitMIS.Controllers.Regional.Regional.Models.ManageEcdViewModel
+@{int? id = Context.Session.GetInt32("id");
+    ViewBag.Name = "WalmerECDC";
+     int centreValue = 0;
+}
+<h1>Manage ECD</h1>
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<h2>Please Select A Centre:</h2>
+<h3>Centre</h3>
+<select id="selectCentre">
+    <option value="1">North End ECD</option>
+    <option value="2">Walmer ECDC</option>
+</select>
+
+@*foreach (var dt in ViewData.Model)
+    {
+        @dt["Name"];
+}*@
+<h2>Programmes</h2>
+<h3>Flag Centre for not having approved programmes</h3><input id="Checkbox1" type="checkbox" />
+
+<br/>
+<a asp-controller="Regional" asp-action="Index" asp-route-id="@id" class="btn btn-primary">Back To Profile</a>
+<a asp-action="Report" asp-controller="Regional" asp-route-id="@id" class="btn btn-primary">Go To Reports</a>
+@*asp-route-id="@id"*@

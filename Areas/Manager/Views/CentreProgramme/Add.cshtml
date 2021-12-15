@@ -1,0 +1,49 @@
+﻿@model CentreProgramme
+@{
+    ViewBag.Title = "Add Centre Programme";
+}
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <form asp-action="Add" asp-controller="CentreProgramme" asp-area="Manager" method="post">
+
+        <div class="input-group">
+            <div class="col-6 form-group">
+                <label asp-for="ProgrammeID"></label>
+                <select asp-for="ProgrammeID" class="form-control">
+                    <option value="">-- Select Programme --</option>
+                    @foreach (Programme pro in ViewBag.Programmes)
+                    {
+                        <option value="@pro.ProgrammeID">@pro.Name</option>
+                    }
+                </select>
+                <div><span asp-validation-for="ProgrammeID" class="text-danger"></span></div>
+            </div>
+
+            <div class="col-6 form-group">
+                <label asp-for="TeacherID"></label>
+                <select asp-for="TeacherID" class="form-control">
+                    <option value="">-- Select Teacher --</option>
+                    @foreach (TeacherViewModel t in ViewBag.Teachers)
+                    {
+                        <option value="@t.TeacherID">@t.FullNames</option>
+                    }
+                </select>
+                <div><span asp-validation-for="TeacherID" class="text-danger"></span></div>
+            </div>
+        </div>
+
+        <div class="col-6 form-group">
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        <div class="col-6 form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" asp-controller="CentreProgramme" asp-area="Manager" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

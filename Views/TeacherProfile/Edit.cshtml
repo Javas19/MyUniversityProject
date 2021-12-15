@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model EditTeacherProfile
+@{
+}
+
+
+<form asp-action="Edit" asp-controller="TeacherProfile" method="post">
+    <div class="form-group">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <label asp-for="emailAddress">Email</label>
+        <input asp-for="emailAddress" class="form-control" />
+        <label asp-for="ConfirmEmailAddress">Confirm Email</label>
+        <input asp-for="ConfirmEmailAddress" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Edit profile</button>
+    <a asp-action="Display" asp-controller="TeacherProfile">Cancel</a>
+</form>
+
+

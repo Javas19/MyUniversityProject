@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model TermReportVM
+@{
+
+}
+
+<h2>Pupil Progress</h2>
+<form asp-action="Add" asp-controller="TermReport" method="post">
+
+    <div class="input-group">
+
+        <div class="col-6 form-group">
+
+            <label asp-for="PupilID">Pupil</label>
+            <select asp-for="PupilID" class="form-control">
+                <option value="">-- Select Pupil --</option>
+                @foreach (PupilViewModel pupil in ViewBag.Pupils)
+                {
+
+                    <option value="@pupil.PupilID">@pupil.Name @pupil.Surname</option>
+                }
+            </select>
+            <div><span asp-validation-for="PupilID" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="ProgrammeId">Programme</label>
+            <select asp-for="ProgrammeId" class="form-control">
+                <option value="">-- Select Programme --</option>
+                @foreach (ProgramViewModel p in ViewBag.Programs)
+                {
+                    <option value="@p.ProgrammeID">@p.ProgrammeName</option>
+                }
+            </select>
+            <div><span asp-validation-for="ProgrammeId" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="Term">Term</label>
+            <select asp-for="Term" class="form-control">
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+            </select>
+            <div><span asp-validation-for="Term" class="text-danger"></span></div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Comments">Comment</label>
+            <textarea asp-for="Comments" class="form-control" rows="5"></textarea>
+            <div><span asp-validation-for="Comments" class="text-danger"></span></div>
+        </div>
+
+
+
+    </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>

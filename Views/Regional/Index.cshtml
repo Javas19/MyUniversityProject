@@ -1,0 +1,25 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{int? id = Context.Session.GetInt32("id");
+    var email = Model.Email;
+    var firstname = Model.Surname;
+
+}
+@using Microsoft.AspNetCore.Http;
+@model DigeraitMIS.Controllers.Regional.Regional.Models.HomePageModel
+@using System.Data;
+<h1>Your profile</h1>
+<label>Name: &nbsp;</label>
+<p>Anam</p>
+<br />
+<label>Surname: &nbsp;</label>
+<p>Booi</p>
+<br />
+<label>Email: &nbsp;</label>
+<p>anam@gmail.com</p>
+<br />
+<label>Role: &nbsp;</label>
+<p>Regional</p>
+<h2>@email</h2>
+<a asp-controller="Profile" asp-action="Edit" asp-route-id="@id" class="btn btn-primary">Edit Profile</a>

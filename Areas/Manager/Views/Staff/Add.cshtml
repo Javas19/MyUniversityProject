@@ -1,0 +1,46 @@
+﻿@model TeacherVM
+
+@{
+    ViewBag.Title = "Add Teacher";
+}
+
+
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <form asp-action="Add" asp-controller="Staff" asp-area="Manager" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Surname" class="control-label"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="EmailAddress" class="control-label"></label>
+            <input asp-for="EmailAddress" class="form-control" />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="ConfirmEmailAddress" class="control-label"></label>
+            <input asp-for="ConfirmEmailAddress" class="form-control" />
+            <span asp-validation-for="ConfirmEmailAddress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="IDNumber" class="control-label"></label>
+            <input asp-for="IDNumber" class="form-control" />
+            <span asp-validation-for="IDNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+            <a asp-action="Index" asp-controller="Staff" asp-area="Manager" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

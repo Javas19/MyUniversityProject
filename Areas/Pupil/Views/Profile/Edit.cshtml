@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model EditProfileViewModel
+@using Microsoft.AspNetCore.Http
+@{ }
+
+<h2>Edit profile</h2>
+<div class="align-content-center">
+
+    <form asp-action="Edit" asp-controller="Profile" asp-area="Pupil" method="post">
+        <div class="col-6 form-group">
+            <div>Name: @Context.Session.GetString("name")</div>
+
+        </div>
+        <div class="col-6 form-group">
+            <div>Surname: @Context.Session.GetString("surname")</div>
+
+        </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="input-group">
+
+            <div class="col-6 form-group">
+                <label asp-for="Email">Email Address</label>
+                <input asp-for="Email" class="form-control" type="email" v />
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="ConfirmEmail">Confirm Email</label>
+                <input asp-for="ConfirmEmail" class="form-control" type="email" />
+            </div>
+        </div>
+        <div class="input-group">
+            <div class="col-6 form-group">
+                <label asp-for="Password">Password</label>
+                <input type="password" asp-for="Password" class="form-control" />
+            </div>
+            <div class="col-6 form-group">
+                <label asp-for="ConfirmPassword">Confirm Password</label>
+                <input type="password" asp-for="ConfirmPassword" class="form-control" />
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
+        <a asp-action="Index" asp-controller="Home" asp-area="Pupil">Cancel</a>
+    </form>
+
+</div>

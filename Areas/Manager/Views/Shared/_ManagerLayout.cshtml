@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DigeraitMIS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="bg-white">
+        <div class="jumbotron mt-2">
+            @*<a class="navbar-brand" asp-area="Manager" asp-controller="Home" asp-action="Index">@Context.Session.GetString("Centre")</a><br />*@
+            <a class="navbar-brand" asp-area="Manager" asp-controller="Home" asp-action="Index">@Context.Session.GetString("CentreName")</a><br />
+        </div>
+        <nav class="nav navbar-expand-sm navbar-toggleable-sm nav-tabs nav-justified navbar-nav text-white navbar-light bg-primary mb-3">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class=" navbar-collapse collapse d-sm-inline-flex  navbar-nav flex-grow-1" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString()=="Home" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-body @(ViewContext.RouteData.Values["Controller"].ToString()=="CentreProfile" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="CentreProfile" asp-action="Index">Centre Profile</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-body @(ViewContext.RouteData.Values["Controller"].ToString()=="Staff" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="Staff" asp-action="Index">Manage Staff</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString()=="Meetings" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="Meetings" asp-action="Index">Meetings</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString()=="CentreProgramme" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="CentreProgramme" asp-action="Index">Centre Programmes</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-body @(ViewContext.RouteData.Values["Controller"].ToString()=="Transaction" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" role="tab" asp-area="Manager" asp-controller="Transaction" asp-action="Index">Transactions</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Action"].ToString()=="Display" && ViewContext.RouteData.Values["area"].ToString() == "Manager" ?"active":"")" asp-action="Display" asp-controller="Report" asp-area="Manager">Generate Reports</a>
+                </li>
+            </ul>
+
+            <div class="navbar-nav navbar-right">
+                <a asp-action="LogOut" asp-area="" asp-controller="Account" class="btn btn-primary bg-danger">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+    <style type="text/css">
+        body {
+            background: #42B4E2;
+        }
+        /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted bg-primary">
+        <div class="container text-dark">
+
+            &copy; 2021 - ECDC MIS &nbsp;
+            Developed by: <img alt="DigeraIT" src="~/Digera-IT (1).jpg" width="50" height="50" />
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

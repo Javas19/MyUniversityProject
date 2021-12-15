@@ -1,0 +1,81 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model ManagePupilProgress
+@{
+}
+
+<h2>Pupil Progress</h2>
+<form asp-action="AddPupilProgress" asp-controller="ManagePupilProgress" method="post">
+
+    <div class="input-group">
+
+        <div class="col-6 form-group">
+
+            <label asp-for="PupilID ">Pupil</label>
+            <select asp-for="PupilID" class="form-control">
+                <option value="">-- Select Pupil --</option>
+                @foreach (PupilViewModel pupil in ViewBag.Pupils)
+                {
+
+                    <option value="@pupil.PupilID">@pupil.Name @pupil.Surname</option>
+                }
+            </select>
+            <div><span asp-validation-for="PupilID" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="ProgrammeID">Programme</label>
+            <select asp-for="ProgrammeID" class="form-control">
+                <option value="">-- Select Programme --</option>
+                @foreach (ProgramViewModel p in ViewBag.Programs)
+                {
+                    <option value="@p.ProgrammeID">@p.ProgrammeName</option>
+                }
+            </select>
+            <div><span asp-validation-for="ProgrammeID" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="RegsiterID">Attendance</label>
+            <select asp-for="RegsiterID" class="form-control">
+                <option value="">-- Select Attendance --</option>
+                @foreach (RegisterViewModel reg in ViewBag.Registrations)
+                {
+
+                    <option value="@reg.RegisterID">@reg.Status</option>
+                }
+            </select>
+            <div><span asp-validation-for="RegsiterID" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+            <label asp-for="Term">Term</label>
+            <select asp-for="Term" class="form-control">
+                <option value="Term1">Term 1</option>
+                <option value="Term2">Term 2</option>
+                <option value="Term3">Term 3</option>
+                <option value="Term4">Term 4</option>
+            </select>
+            <div><span asp-validation-for="Term" class="text-danger"></span></div>
+        </div>
+        <div class="col-6 form-group">
+
+            <label asp-for="Date">Date</label>
+            <input type="date" class="form-control" asp-for="Date" />
+
+
+        </div>
+        <div class="col-6 form-group">
+
+            <label asp-for="Ratings">Rating</label>
+            <input class="form-control" asp-for="Ratings" />
+
+
+        </div>
+        <br />
+        <button type="submit" class="btn btn-success">Submit</button>
+
+    </div>
+</form>
+
+
+
+

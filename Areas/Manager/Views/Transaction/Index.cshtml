@@ -1,0 +1,87 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+@{
+    ViewBag.Title = "Transaction List";
+}
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">@ViewBag.Title</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Transaction" asp-action="Add" asp-area="Manager" class="btn btn-primary">Create new Transaction</a>
+        </div>
+    </div>
+        <br /><table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <label>Name &nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Date &nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Reference&nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Transaction Type &nbsp;</label>
+                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.CentreNo)
+                        </th>*@
+                    <th>
+                        <label>Amount &nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Description &nbsp;</label>
+                    </th>
+                    <th>
+                        Changes
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var dt in ViewData.Model)
+                {
+                    <tr>
+                        <td>
+                            @dt["Name"]
+                        </td>
+                        <td>
+                            @dt["Date"]
+                        </td>
+                        <td>
+                            @dt["ReferenceNo"]
+                        </td>
+                        <td>
+                            @dt["TransactionType"]
+                        </td>
+                        @*<td>
+                                @Html.DisplayFor(modelItem => item.CentreNo)
+                            </td>*@
+                        <td>
+                            @dt["Amount"]
+                        </td>
+                        <td>
+                            @dt["Description"]
+                        </td>
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Transaction" asp-action="Edit" asp-area="Manager" asp-route-id="@dt["TransactionID"]" class="btn btn-primary mx-1">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,14 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+@{
+    ViewBag.Role = "Welcome to Manager Dashboard";
+}
+<h2>@ViewBag.Role</h2>
+<h3>Navigate to the </h3>
+<a asp-controller="Regional" asp-action="Index" asp-route-id="@id" class="btn btn-primary">Home Page</a>
+<p></p>

@@ -1,0 +1,76 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ 
+    //ReportViewModel report = new ReportViewModel();
+}
+
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-toggle" id="termDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select term</button>
+    <div class="dropdown-menu" aria-labelledby="termDropDown">
+        <a asp-action="Display" class="dropdown-item " asp-controller="Report" asp-area="Pupil" asp-route-term="Term1">Term 1</a>
+        <a asp-action="Display" class="dropdown-item " asp-controller="Report" asp-area="Pupil" asp-route-term="Term2">Term 2</a>
+        <a asp-action="Display" class="dropdown-item  " asp-controller="Report" asp-area="Pupil" asp-route-term="Term3">Term 3</a>
+        <a asp-action="Display" class="dropdown-item " asp-controller="Report" asp-area="Pupil" asp-route-term="Term4">Term 4</a>
+    </div>
+</div>
+
+<br />
+<div class="form-group">
+
+
+    @if (ViewBag.Report.Count > 0)
+    {
+        <div class="row">
+            <div class="col-9">
+                <h6>Name: @ViewBag.Name</h6>
+                <h6>Surname: @ViewBag.Surname</h6>
+                <h6>Centre Name: @ViewBag.Centre</h6><br />
+            </div>
+            <div class="justify-content-end col-3">
+                <h6>Term: @ViewBag.Term</h6>
+                <h6>Date: @ViewBag.Date</h6>
+            </div>
+
+
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Programme Name</th>
+                    <th>Final Mark</th>
+                    <th>Days Absent</th>
+                    <th>Teacher comments</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ReportViewModel report in ViewBag.Report)
+                {
+                    <tr>
+                        <td>
+                            @report.Name
+                        </td>
+                        <td>
+                            @report.Ratings
+                        </td>
+                        <td>
+                            @report.Days
+                        </td>
+                        <td>
+                            @report.Comments
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (ViewBag.Report.Count == 0)
+    {
+        <h4 class="bg-warning text-center text-white p-2">Report not currently available.</h4>
+    }
+
+
+
+
+</div>

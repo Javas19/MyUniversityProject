@@ -1,0 +1,49 @@
+﻿@model EditTeacherDetailsVM
+
+@{
+    ViewBag.Title = "Edit Teacher";
+}
+@if (TempData.Keys.Contains("data"))
+{
+    <h4 class="bg-info text-center text-white p-2">
+        Editing:
+        @TempData["data"]
+    </h4>
+}
+
+<div class="align-content-center">
+    <h2>@ViewBag.Title</h2>
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Staff" asp-area="Manager" method="post">
+            <div>
+                <label>First Name:  &nbsp;</label>@Model.FirstName
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                @*<input asp-for="Status" class="form-control" />*@
+                <select asp-for="Status" class="form-control">
+                    <option>--Select Type--</option>
+                    <option>Active</option>
+                    <option>Inactive</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div>
+                    <button type="submit" value="Save" class="btn btn-primary">Update</button>
+                    <a asp-action="Index" asp-controller="Staff" asp-area="Manager" class="btn btn-danger">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

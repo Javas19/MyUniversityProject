@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DigeraitMIS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header class="bg-white">
+        <div class="jumbotron mt-2">
+            <a class="navbar-brand" asp-area="Pupil" asp-controller="Home" asp-action="Index">@Context.Session.GetString("Centre")</a><br />
+        </div>
+        <nav class="nav navbar-expand-sm navbar-toggleable-sm nav-tabs nav-justified navbar-nav text-white navbar-light bg-primary mb-3">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class=" navbar-collapse collapse d-sm-inline-flex  navbar-nav flex-grow-1" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Action"].ToString()=="Index" && ViewContext.RouteData.Values["area"].ToString() == "Pupil" ?"active":"")" role="tab" asp-area="Pupil" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Action"].ToString()=="Display" && ViewContext.RouteData.Values["area"].ToString() == "Pupil" ?"active":"")" asp-action="Display" asp-controller="Report" asp-area="Pupil">View Reports</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-body @(ViewContext.RouteData.Values["Controller"].ToString()=="Suggestion" && ViewContext.RouteData.Values["area"].ToString() == "Pupil" ?"active":"")" role="tab" asp-area="Pupil" asp-controller="Suggestion" asp-action="List">Add Suggestions</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link text-dark @(ViewContext.RouteData.Values["Controller"].ToString()=="Meetings" && ViewContext.RouteData.Values["area"].ToString() == "Pupil" ?"active":"")" role="tab" asp-area="Pupil" asp-controller="Meetings" asp-action="List">Check Meetings</a>
+                </li>
+
+            </ul>
+
+            <div class="navbar-nav navbar-right">
+                <a asp-action="LogOut" asp-area="" asp-controller="Account" class="btn btn-primary bg-danger">Logout</a>
+            </div>
+
+        </nav>
+    </header>
+    <style type="text/css">
+        body {
+            background: #42B4E2;
+        }
+        /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted bg-primary">
+        <div class="container text-dark">
+
+            &copy; 2021 - ECDC MIS &nbsp;
+            Developed by: <img alt="DigeraIT" src="~/Digera-IT (1).jpg" width="50" height="50" />
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

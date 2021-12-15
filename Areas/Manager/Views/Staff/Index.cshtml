@@ -1,0 +1,82 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+@{
+    ViewBag.Title = "Staff List";
+}
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">@ViewBag.Title</h2>
+        </div>
+        <div class="col-6 text-right">
+            <a asp-controller="Staff" asp-action="Add" asp-area="Manager" class="btn btn-primary">Add new Staff</a>
+        </div>
+    </div>
+        <br /><table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <label>First Name &nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Surname&nbsp;</label>
+                    </th>
+                    <th>
+                        <label>Email Address&nbsp;</label>
+                    </th>
+                    <th>
+                        <label>User Role&nbsp;</label>
+                    </th>
+                    <th>
+                        <label>OfficeNumber&nbsp;</label>
+                    </th>
+                    @*<th>
+                            <label>Description &nbsp;</label>
+                        </th>*@
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var dt in ViewData.Model)
+                {
+                    <tr>
+                        <td>
+                            @dt["FirstName"]
+                        </td>
+                        <td>
+                            @dt["Surname"]
+                        </td>
+                        <td>
+                            @dt["EmailAddress"]
+                        </td>
+                        <td>
+                            @dt["UserType"]
+                        </td>
+                        <td>
+                            @dt["OfficeNumber"]
+                        </td>
+                        @*<td>
+                                @dt["Description"]
+                            </td>*@
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Staff" asp-action="Detail" asp-area="Manager" asp-route-id="@dt["UserID"]" class="btn btn-primary mx-1">View</a>
+                                <a asp-controller="Staff" asp-action="Edit" asp-area="Manager" asp-route-id="@dt["UserID"]" class="btn btn-primary mx-1">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

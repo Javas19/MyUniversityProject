@@ -1,0 +1,32 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@using Microsoft.AspNetCore.Http
+@model DigeraitMIS.Controllers.Regional.Regional.Models.ManageEcdViewModel
+@{
+    int? id = Context.Session.GetInt32("id");
+}
+<h1>Manage ECD</h1>
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<label> ECD Centre: &nbsp;</label>
+
+@*foreach (var dt in ViewData.Model)
+    {
+        @dt["Name"];
+    }*@
+
+
+
+@foreach (var dt in ViewBag.Model)
+{
+    @dt["Name"];
+}
+<br />
+<a asp-controller="Regional" asp-action="Index" asp-route-id="@id" class="btn btn-primary">Manage ECD</a>
+@*asp-route-id="@id"*@
+

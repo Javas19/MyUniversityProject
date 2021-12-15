@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Upcoming Meetings:";
+}
+
+@if (TempData.Keys.Contains("message"))
+{
+    <h4 class="bg-success text-center text-white p-2">
+        @TempData["message"]
+    </h4>
+}
+<br />
+<div class="row pt-4">
+    <div class="col-6">
+        <h2 class="text-primary">@ViewBag.Title</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-controller="Meetings" asp-action="Add" asp-area="Manager" class="btn btn-primary">Create new Meeting</a>
+    </div>
+</div>
+<div class="align-content-center">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Meeting Title</th>
+                    <th>Meeting Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dt in ViewData.Model)
+                {
+                    <tr>
+                        <td colspan="2">
+                            @dt["Title"]
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Date: @dt["Date"]
+                        </td>
+                        <td>
+                            @dt["Description"]
+                        </td>
+                        <td>
+                            <div class="w-100 btn-group" role="group">
+                                <a asp-controller="Meetings" asp-action="Edit" asp-area="Manager" asp-route-id="@dt["MeetingID"]" class="btn btn-primary mx-1">Edit</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

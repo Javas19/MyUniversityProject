@@ -1,0 +1,108 @@
+﻿@model DigeraitMIS.Models.Pupil
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>Pupil</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailAddress" class="control-label"></label>
+                <input asp-for="EmailAddress" class="form-control" />
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmEmail" class="control-label"></label>
+                <input asp-for="ConfirmEmail" class="form-control" />
+                <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserType" class="control-label"></label>
+                <input asp-for="UserType" class="form-control" />
+                <span asp-validation-for="UserType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="control-label"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GuardianName" class="control-label"></label>
+                <input asp-for="GuardianName" class="form-control" />
+                <span asp-validation-for="GuardianName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IDnumber" class="control-label"></label>
+                <input asp-for="IDnumber" class="form-control" />
+                <span asp-validation-for="IDnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CentreNo" class="control-label"></label>
+                <input asp-for="CentreNo" class="form-control" />
+                <span asp-validation-for="CentreNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegionID" class="control-label"></label>
+                <input asp-for="RegionID" class="form-control" />
+                <span asp-validation-for="RegionID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProvinceID" class="control-label"></label>
+                <input asp-for="ProvinceID" class="form-control" />
+                <span asp-validation-for="ProvinceID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CityID" class="control-label"></label>
+                <input asp-for="CityID" class="form-control" />
+                <span asp-validation-for="CityID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserStatus" class="control-label"></label>
+                <input asp-for="UserStatus" class="form-control" />
+                <span asp-validation-for="UserStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

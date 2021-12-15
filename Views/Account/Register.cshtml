@@ -1,0 +1,158 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Pupil
+@{ ViewBag.Title = "Pupil Registration";
+   Layout = null; 
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - DigeraitMIS</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <style type="text/css">
+        body {
+            background: #42B4E2 !important;
+        }
+        /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+    </style>
+</head>
+<header class="jumbotron align-content-center">
+    <div class="text-center">
+        <img id="logo" alt="MIS logo" src="~/ECDC MIS logo.png" class="img-fluid rounded justify-content-md-center" />
+    </div>
+    <h3 class="text-center">@ViewBag.Title</h3>
+</header>
+<body>
+
+    <div class="container">
+
+        <main>
+            <div class="text-center">
+                <p2>
+                    You are required to fill all fields in this form.<br />
+                    If City/suburb you reside in is not listed, choose the nearest one.
+                </p2>
+            </div>
+            <br /><br />
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="FirstName">First Name</label>
+                        <input class="form-control" asp-for="FirstName" />
+                        <div><span asp-validation-for="FirstName" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="Surname">Surname</label>
+                        <input class="form-control" asp-for="Surname" />
+                        <div><span asp-validation-for="Surname" class="text-danger"></span></div>
+                    </div>
+
+                </div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="DateOfBirth">Date of Birth</label>
+                        <input class="form-control" type="date" asp-for="DateOfBirth" />
+                        <div><span asp-validation-for="DateOfBirth" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="IDnumber">ID Number</label>
+                        <input class="form-control" asp-for="IDnumber" />
+                        <div><span asp-validation-for="IDnumber" class="text-danger"></span></div>
+                    </div>
+
+                </div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="ProvinceID">Province</label>
+                        <select asp-for="ProvinceID" class="form-control">
+                            <option value="">-- Select Province --</option>
+                            @foreach (Province pro in ViewBag.Provinces)
+                            {
+                <option value="@pro.ProvinceID">@pro.Name</option>}
+                        </select>
+                        <div><span asp-validation-for="ProvinceID" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="CityID">City</label>
+                        <select asp-for="CityID" class="form-control">
+                            <option value="">-- Select City --</option>
+                            @foreach (City c in ViewBag.Cities)
+                            {
+                <option value="@c.CityID">@c.CityName</option>}
+                        </select>
+                        <div><span asp-validation-for="CityID" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="RegionID">Region</label>
+                        <select asp-for="RegionID" class="form-control">
+                            <option value="">-- Select Region --</option>
+                            @foreach (Region reg in ViewBag.Regions)
+                            {
+                <option value="@reg.RegionId">@reg.Name</option>}
+                        </select>
+                        <div><span asp-validation-for="RegionID" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="Address">Address Line 1</label>
+                        <input type="text" asp-for="Address" class="form-control" />
+                        <div><span asp-validation-for="Address" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="GuardianName">Guardian Name</label>
+                        <input class="form-control" asp-for="GuardianName" />
+                        <div><span asp-validation-for="GuardianName" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="CentreNo">ECD Centre</label>
+                        <select asp-for="CentreNo" class="form-control">
+                            <option value="">-- Select Centre --</option>
+                            @foreach (CentreProfile dt in ViewBag.Centres)
+                            {
+                <option value="@dt.CentreNo">@dt.Name</option>}
+                        </select>
+                        <div><span asp-validation-for="CentreNo" class="text-danger"></span></div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="EmailAddress">Email Address</label>
+                        <input type="email" asp-for="EmailAddress" class="form-control" />
+                        <div><span asp-validation-for="EmailAddress" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="ConfirmEmail">Confirm Email</label>
+                        <input type="email" asp-for="ConfirmEmail" class="form-control" />
+                        <div><span asp-validation-for="ConfirmEmail" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="col-6 form-group">
+                        <label asp-for="Password">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <div><span asp-validation-for="Password" class="text-danger"></span></div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label asp-for="ConfirmPassword">Confirm Password</label>
+                        <input asp-for="ConfirmPassword" type="password" class="form-control" />
+                        <div><span asp-validation-for="ConfirmPassword" class="text-danger"></span></div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Register Pupil</button>
+                <a asp-controller="Account" asp-action="Login" class="btn btn-primary">Go to login</a>
+            </form>
+        </main>
+
+    </div>
+</body>
+
+
